@@ -1,0 +1,60 @@
+﻿@page
+@model EmployeesApplication.Areas.Managing.Pages.Employees.EditModel
+
+<h4>Employee</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="Input.Id" />
+
+            <div class="form-group">
+                <label asp-for="Input.Name" class="control-label"></label>
+                <input asp-for="Input.Name" class="form-control" />
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Surname" class="control-label"></label>
+                <input asp-for="Input.Surname" class="form-control" />
+                <span asp-validation-for="Input.Surname" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Age" class="control-label"></label>
+                <input asp-for="Input.Age" class="form-control" />
+                <span asp-validation-for="Input.Age" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Gender"></label>
+                <select asp-items="@Model.GendersList" asp-for="Input.Gender"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.State"></label>
+                <select asp-items="@Model.StatesList" asp-for="Input.State"></select>
+            </div>
+
+            @foreach (var pl in Model.ProgrammingLanguages)
+            {
+                <input type="checkbox" name="inputs[]" value="@pl.Name" />
+                <label>@pl.Name</label>
+            }
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
